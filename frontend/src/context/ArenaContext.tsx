@@ -101,11 +101,17 @@ export const ArenaProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [activeBattle, setActiveBattle] = useState<Battle | null>(null);
   const [connected, setConnected] = useState<boolean>(false);
 
-  const API_HOST = window.location.hostname || 'localhost';
-  const API_URL = `http://${API_HOST}:8000/api`;
-  const WS_URL = `ws://${API_HOST}:8000/api/ws`;
+  // Derive base URLs from VITE_API_URL env variable.
+  // When empty (GitHub Pages / offline mode) all fetches silently no-op.
+  const rawBase = (import.meta.env.VITE_API_URL as string) ?? 'http://localhost:8000';
+  const API_URL = rawBase ? `${rawBase}/api` : '';
+  // Use wss:// when served over HTTPS, ws:// otherwise
+  const WS_URL = rawBase
+    ? rawBase.replace(/^https/, 'wss').replace(/^http/, 'ws') + '/api/ws'
+    : '';
 
   const refreshAgents = useCallback(async () => {
+    if (!API_URL) return;
     try {
       const res = await fetch(`${API_URL}/agents`);
       if (res.ok) setAgents(await res.json());
@@ -115,6 +121,7 @@ export const ArenaProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [API_URL]);
 
   const refreshBattles = useCallback(async () => {
+    if (!API_URL) return;
     try {
       const res = await fetch(`${API_URL}/battles`);
       if (res.ok) setBattles(await res.json());
@@ -124,6 +131,7 @@ export const ArenaProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [API_URL]);
 
   const refreshMarket = useCallback(async () => {
+    if (!API_URL) return;
     try {
       const res = await fetch(`${API_URL}/marketplace`);
       if (res.ok) setMarketItems(await res.json());
@@ -133,6 +141,7 @@ export const ArenaProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [API_URL]);
 
   const refreshSimLogs = useCallback(async () => {
+    if (!API_URL) return;
     try {
       const res = await fetch(`${API_URL}/simulation/logs`);
       if (res.ok) setSimLogs(await res.json());
@@ -237,7 +246,13 @@ export const ArenaProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     let reconnectTimeout: any;
 
     const connectWS = () => {
-      ws = new WebSocket(WS_URL);
+      // Skip WebSocket entirely in offline/demo mode (GitHub Pages)
+    if (!WS_URL) {
+      setConnected(false);
+      return;
+    }
+
+    ws = new WebSocket(WS_URL);
 
       ws.onopen = () => {
         setConnected(true);
