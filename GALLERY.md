@@ -30,3 +30,7 @@ Welcome to the visual gallery of the Universal Agent Arena.
 ## Breeding Lab
 ![Breeding Lab](assets/breeding_lab.png)
 
+
+## Cyber Siege
+![Cyber Siege](assets/cyber_siege.png)
+
