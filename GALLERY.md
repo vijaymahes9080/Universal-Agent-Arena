@@ -18,3 +18,7 @@ Welcome to the visual gallery of the Universal Agent Arena.
 ## Agent Neural Network
 ![Agent Neural Network](assets/agent_neural_network.png)
 
+
+## Agent Cityscape
+![Agent Cityscape](assets/agent_cityscape.png)
+
