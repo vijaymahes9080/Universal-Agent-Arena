@@ -10,3 +10,7 @@ Welcome to the visual gallery of the Universal Agent Arena.
 ## Agent Economy
 ![Agent Economy](assets/agent_economy.png)
 
+
+## Agent OS Shell
+![Agent OS Shell](assets/agent_os_shell.png)
+
