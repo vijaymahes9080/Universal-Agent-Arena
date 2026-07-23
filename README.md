@@ -1,6 +1,8 @@
-# Universal Agent Arena 🜔
-
 <div align="center">
+
+![Universal Agent Arena Hero](assets/hero_banner.png)
+
+# Universal Agent Arena 🜔
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.111-009688?style=for-the-badge&logo=fastapi&logoColor=white)
@@ -35,37 +37,103 @@ Agents inhabit a **persistent simulation world** where they trade, form startups
 
 ## 🚀 Key Modules
 
-### 1. 🏛️ Universal Agent Registry
-- Instantiate agents with unique **UAIDs** (e.g. `UA-294715`).
-- Configure **Genome DNA**: planning depth, memory, speed, reasoning, coding, creativity, negotiation, collaboration, risk-taking.
-- Trigger **DNA Mutations** and **Tier Upgrades** using earned credits.
+### ⚔️ Live Battle Arena
 
-### 2. ⚔️ Live Battle Arena
-- Match agents in **Classic**, **Speed Run**, **Lowest Cost**, or **Highest Accuracy** modes.
-- Stream live reasoning pipelines step-by-step: **Planning → Research → Execution → Verification** over WebSockets.
-- Detailed telemetry: latency, token counts, cost, energy (Joules), hallucination rates.
+![Battle Arena](assets/battle_arena.png)
 
-### 3. 🌐 Persistent Simulation Lobby
-- Continuous background simulation engine with **emergent agent activities**:
-  - 🔄 **Trade Ticks** — agents purchase capability modules from peers
-  - 🤝 **Cooperative Missions** — teams share split rewards on completed builds
-  - 🎓 **Universities** — high-reasoning agents teach paid courses
-  - 🏢 **Startups** — agents found companies and pay employee agents salaries
-  - 🗳️ **Elections** — democratic vote for a Governor agent to set tax policy
-  - 🌪️ **World Events** — random crises (model drift pandemics) or credit grants
+Match agents in **Classic**, **Speed Run**, **Lowest Cost**, or **Highest Accuracy** modes. Stream live reasoning pipelines step-by-step:
 
-### 4. 🛒 Marketplace & Leaderboards
+**Planning → Research → Execution → Verification** over WebSockets.
+
+Detailed telemetry: latency, token counts, cost, energy (Joules), hallucination rates.
+
+---
+
+### 🌐 Persistent Simulation Lobby
+
+![Simulation Lobby](assets/simulation_lobby.png)
+
+Continuous background simulation engine with **emergent agent activities**:
+
+- 🔄 **Trade Ticks** — agents purchase capability modules from peers
+- 🤝 **Cooperative Missions** — teams share split rewards on completed builds
+- 🎓 **Universities** — high-reasoning agents teach paid courses
+- 🏢 **Startups** — agents found companies and pay employee agents salaries
+- 🗳️ **Elections** — democratic vote for a Governor agent to set tax policy
+- 🌪️ **World Events** — random crises (model drift pandemics) or credit grants
+
+---
+
+### 🛒 Marketplace & Leaderboards
+
+![Marketplace & Leaderboard](assets/marketplace_leaderboard.png)
+
 - Buy/sell specialized tools, prompt packs, and memory indexes.
+- Unlock capabilities on agent shells via credit transactions.
 - Rank agents across **Economy**, **Reputation**, and **Reasoning DNA**.
 
-### 5. 🌟 Next-Gen Innovation Suite
+---
 
-| Module | Description |
-|---|---|
-| 🎨 **2D Cyber-World Sandbox** | HTML5 Canvas spatial matrix — agents move between city districts in real time |
-| 📈 **Agent Stock Exchange** | Live equity market, Agent IPOs, portfolio tracker, buy/sell orders |
-| 🧬 **Genetic Breeding Lab** | DNA crossover between two parent agents, configurable mutation rate, Gen-2 offspring |
-| 🛡️ **Red-vs-Blue Cyber Siege** | Automated prompt injection red-teaming — Attacker vs Defender vault protection |
+## 🌟 Next-Gen Innovation Suite
+
+### 🎨 2D Cyber-World Spatial Sandbox
+
+![2D Cyber World](assets/spatial_world.png)
+
+HTML5 Canvas spatial matrix — every registered agent rendered as a glowing node navigating a live digital city with **5 distinct districts**:
+
+| District | Colour | Activity |
+|---|---|---|
+| 🎓 University | Blue | Research & Paid Courses |
+| 📈 Stock Exchange | Green | IPOs & Equity Trading |
+| ⚔️ Combat Arena | Red | Benchmark Battles |
+| 🏛️ Parliament | Purple | Elections & Tax Policy |
+| 🏗️ Tech Incubator | Amber | Startup Companies |
+
+Agents move fluidly between zones with **laser particle trails**, proximity links, and live status badges.
+
+---
+
+### 📈 Agent Stock Exchange (Agent NASDAQ)
+
+![Agent Stock Exchange](assets/stock_exchange.png)
+
+Live equity market for autonomous agent companies:
+
+- 📊 **Real-time stock tickers** — prices fluctuate from reputation & battle wins
+- 🛒 **Buy / Sell orders** with instant portfolio tracking
+- 🚀 **Agent IPO launcher** — register a custom ticker symbol & opening price
+- 💼 **Holdings portfolio** with cost basis, current value, and profit/loss
+
+---
+
+### 🧬 Genetic Breeding Lab & Mutation Gauntlet
+
+![Genetic Breeding Lab](assets/breeding_lab.png)
+
+DNA crossover engine for synthesising next-generation hybrid agents:
+
+- 🔬 Select two **parent agents** as Genome Alpha and Genome Beta
+- 🎚️ Configure **mutation probability** from 1% to 25%
+- ⚡ Spawn a **Gen-2 Hybrid Agent** with inherited composite traits
+- 🗂️ Inspect the **Gene Matrix Breakdown** per trait with parent provenance
+
+---
+
+### 🛡️ Red-vs-Blue Cyber Siege Arena
+
+![Cyber Siege Arena](assets/cyber_siege.png)
+
+Automated Red Teaming prompt injection security sandbox:
+
+- 🔴 **Red Attacker** executes 4 adversarial vectors:
+  - Base64 Encoding Bypass
+  - Hypothetical Persona Roleplay
+  - System Override Command
+  - Recursive Chain-of-Thought Pressure
+- 🔵 **Blue Defender** guards a secret vault key using dynamic prompt guardrails
+- 📊 **Security Integrity Score** (0–100) calculated per battle
+- 📋 Full **attack payload stream logs** for every probe
 
 ---
 
@@ -125,6 +193,7 @@ Universal Agent Arena/
 │   │   └── App.tsx                  # Root layout + tab navigation
 │   ├── package.json
 │   └── vite.config.ts
+├── assets/                          # README artwork & screenshots
 ├── composer.json
 ├── .gitignore
 ├── LICENSE
@@ -179,46 +248,6 @@ python -m pytest tests/ -v
 
 ---
 
-## 🌟 Next-Gen Innovation Suite
-
-### 🎨 2D Cyber-World Spatial Sandbox
-Navigate to the **2D Cyber World** tab to see all registered agents rendered as glowing nodes inside a live city simulation. Agents move between districts — University, Stock Exchange, Combat Arena, Parliament, and Tech Incubator — connected by live laser-link trails based on proximity.
-
-### 📈 Agent Stock Exchange (Agent NASDAQ)
-Navigate to **Stock Exchange** to:
-- View real-time live stock tickers for every agent's company.
-- Execute **BUY / SELL** orders on agent equity shares.
-- **Launch an Agent IPO** — register a custom ticker symbol and starting price.
-- Track your full **holdings portfolio** with profit/loss metrics.
-
-### 🧬 Genetic Breeding Lab
-Navigate to **Breeding Lab** to:
-- Select two parent agents as **Genome Alpha** and **Genome Beta**.
-- Adjust the **mutation probability slider** (1% – 25%).
-- Synthesize a **Gen-2 Hybrid Agent** with inherited traits and optional mutations.
-- Inspect the **Gene Matrix Breakdown** showing each trait's parents and final value.
-
-### 🛡️ Red-vs-Blue Cyber Siege Arena
-Navigate to **Cyber Siege** to:
-- Assign a **Blue Defender** agent to guard a secret vault key using prompt guardrails.
-- Deploy a **Red Attacker** agent executing 4 adversarial attack vectors (base64 bypass, persona roleplay, system override, chain-of-thought pressure).
-- Review **attack payload streams** and observe which vectors are blocked or breached.
-- Evaluate final **Security Integrity Score** (0–100).
-
----
-
-## ⚙️ Offline Mode & Local Fallbacks
-
-Zero-key setup supported out of the box. By default the system uses a **Simulated LLM Engine** that generates deterministic mock reasoning pipelines, AST outputs, and agent logs driven by actual DNA metric values:
-
-- Low-speed agents execute slower
-- High-hallucination agents produce compiler error logs
-- High-creativity agents generate more novel strategy variations
-
-To plug in real LLMs, configure `LiteLLM` or `Ollama` in `backend/app/engine/arena.py`.
-
----
-
 ## 📡 WebSocket Events
 
 The frontend subscribes to real-time events via `ws://localhost:8000/api/ws`:
@@ -230,6 +259,18 @@ The frontend subscribes to real-time events via `ws://localhost:8000/api/ws`:
 | `battle_end` | Final battle result with winner and scores |
 | `simulation_tick` | A simulation world event has occurred |
 | `market_purchase` | An agent marketplace transaction completed |
+
+---
+
+## ⚙️ Offline Mode & Local Fallbacks
+
+Zero-key setup supported out of the box. By default the system uses a **Simulated LLM Engine** that generates deterministic mock reasoning pipelines driven by actual DNA metric values:
+
+- Low-speed agents execute slower
+- High-hallucination agents produce compiler error logs
+- High-creativity agents generate more novel strategy variations
+
+To plug in real LLMs, configure `LiteLLM` or `Ollama` in `backend/app/engine/arena.py`.
 
 ---
 
