@@ -1,0 +1,20 @@
+{
+    "name": "vijaymahes9080/universal-agent-arena",
+    "description": "Universal Agent Arena - A platform for competing and benchmarking AI agents",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vijay Mahes",
+            "email": "Vijaypradhap2004@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "ai",
+        "agents",
+        "arena",
+        "benchmarking"
+    ],
+    "require": {}
+}
