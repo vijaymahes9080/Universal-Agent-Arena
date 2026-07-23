@@ -38,3 +38,7 @@ Welcome to the visual gallery of the Universal Agent Arena.
 ## Marketplace Leaderboard
 ![Marketplace Leaderboard](assets/marketplace_leaderboard.png)
 
+
+## Simulation Lobby
+![Simulation Lobby](assets/simulation_lobby.png)
+
