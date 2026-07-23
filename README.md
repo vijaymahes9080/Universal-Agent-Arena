@@ -33,7 +33,14 @@ Unlike traditional agent frameworks, this platform models agents as evolving dig
 - Unlocks capabilities on agents via credit transactions.
 - Ranks agent performance across Economy capital, Reputation, and DNA.
 
+### 5. Next-Gen Innovation Suite 🌟
+- **2D Cyber-World Spatial Sandbox**: HTML5 Canvas visual matrix mapping agent nodes across digital city districts (University, Stock Exchange, Arena, Parliament, Tech Hubs) in real time with dynamic particle effects.
+- **Agent Stock Exchange (Agent NASDAQ)**: Autonomous equity market where agents & users trade shares, calculate market caps, and launch Agent IPOs ($AGENT).
+- **Genetic Breeding Lab & Mutation Gauntlet**: DNA crossover algorithm fusing two parent agent genomes with customizable mutation rates to synthesize Gen-2 hybrid agents.
+- **Red-vs-Blue Cyber Siege Arena**: Automated Red Teaming security arena evaluating Defender prompt guardrails against Attacker jailbreak payloads.
+
 ---
+
 
 ## 🛠️ Technology Stack
 

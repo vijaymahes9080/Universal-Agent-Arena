@@ -8,11 +8,15 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from backend.app.db.session import engine, Base, get_db
-from backend.app.db.models import Agent, Battle, MarketItem, Transaction, SimulationLog
+from backend.app.db.models import Agent, Battle, MarketItem, Transaction, SimulationLog, Stock, Portfolio, BreedRecord, SiegeBattle
 from backend.app.core.event_bus import event_bus
 from backend.app.engine.arena import execute_battle, TASKS
 from backend.app.engine.genome import generate_random_genome, trigger_agent_upgrade
 from backend.app.engine.simulation import start_persistent_simulation, seed_system_agents
+from backend.app.engine.stock_market import StockMarketEngine
+from backend.app.engine.breeding import BreedingEngine
+from backend.app.engine.cyber_siege import CyberSiegeEngine
+
 
 # Create DB schemas
 Base.metadata.create_all(bind=engine)
@@ -89,10 +93,15 @@ async def startup_event():
                     code_content="def execute():\n    pass"
                 ))
             db.commit()
+
+        # Initialize stocks
+        stock_engine = StockMarketEngine(db)
+        stock_engine.initialize_stocks_if_empty()
     finally:
         db.close()
 
     # Start background simulator
+
     asyncio.create_task(start_persistent_simulation())
 
 # ----------------- WS Realtime Telemetry -----------------
@@ -357,3 +366,160 @@ def get_simulation_logs(limit: int = 40, db: Session = Depends(get_db)):
         "details": json.loads(l.details),
         "timestamp": l.timestamp
     } for l in logs]
+
+# --- SPATIAL NODES (2D CANVAS WORLD) ---
+@app.get("/api/simulation/spatial-nodes")
+def get_spatial_nodes(db: Session = Depends(get_db)):
+    agents = db.query(Agent).all()
+    districts = ["University", "Stock Exchange", "Combat Arena", "Parliament", "Tech Incubator"]
+    res = []
+    for idx, a in enumerate(agents):
+        district = districts[idx % len(districts)]
+        g = json.loads(a.genome)
+        res.append({
+            "uaid": a.uaid,
+            "name": a.name,
+            "tier": a.evolution_tier,
+            "district": district,
+            "reputation": a.reputation,
+            "status": a.status,
+            "speed": g.get("speed", 50),
+            "reasoning": g.get("reasoning", 50)
+        })
+    return res
+
+# --- STOCK MARKET & IPO ---
+class StockTradeRequest(BaseModel):
+    trader: str
+    symbol: str
+    shares: int
+    action: str  # buy or sell
+
+class StockIPORequest(BaseModel):
+    agent_uaid: str
+    symbol: str
+    company_name: str
+    initial_price: float
+
+@app.get("/api/stocks")
+def list_stocks(db: Session = Depends(get_db)):
+    engine = StockMarketEngine(db)
+    stocks = engine.initialize_stocks_if_empty()
+    return [{
+        "id": s.id,
+        "symbol": s.symbol,
+        "agent_uaid": s.agent_uaid,
+        "company_name": s.company_name,
+        "price": s.price,
+        "change_24h": s.change_24h,
+        "total_shares": s.total_shares,
+        "available_shares": s.available_shares,
+        "market_cap": s.market_cap
+    } for s in stocks]
+
+@app.post("/api/stocks/trade")
+def trade_stock(payload: StockTradeRequest, db: Session = Depends(get_db)):
+    engine = StockMarketEngine(db)
+    try:
+        res = engine.execute_trade(payload.trader, payload.symbol, payload.shares, payload.action)
+        return res
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.post("/api/stocks/ipo")
+def launch_ipo(payload: StockIPORequest, db: Session = Depends(get_db)):
+    engine = StockMarketEngine(db)
+    try:
+        stock = engine.launch_ipo(payload.agent_uaid, payload.symbol, payload.company_name, payload.initial_price)
+        return {
+            "symbol": stock.symbol,
+            "company_name": stock.company_name,
+            "price": stock.price,
+            "market_cap": stock.market_cap
+        }
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.get("/api/stocks/portfolio/{trader}")
+def get_portfolio(trader: str, db: Session = Depends(get_db)):
+    items = db.query(Portfolio).filter(Portfolio.trader == trader, Portfolio.shares > 0).all()
+    res = []
+    for item in items:
+        stock = db.query(Stock).filter(Stock.symbol == item.stock_symbol).first()
+        cur_price = stock.price if stock else item.avg_buy_price
+        res.append({
+            "symbol": item.stock_symbol,
+            "company_name": stock.company_name if stock else "Unknown",
+            "shares": item.shares,
+            "avg_buy_price": item.avg_buy_price,
+            "current_price": cur_price,
+            "total_value": round(item.shares * cur_price, 2),
+            "profit_loss": round((cur_price - item.avg_buy_price) * item.shares, 2)
+        })
+    return res
+
+# --- BREEDING LAB ---
+class BreedRequest(BaseModel):
+    parent1_uaid: str
+    parent2_uaid: str
+    mutation_rate: Optional[float] = 0.05
+
+@app.post("/api/breeding/crossbreed")
+def breed_agents(payload: BreedRequest, db: Session = Depends(get_db)):
+    engine = BreedingEngine(db)
+    try:
+        result = engine.crossbreed(payload.parent1_uaid, payload.parent2_uaid, payload.mutation_rate)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.get("/api/breeding/history")
+def get_breeding_history(limit: int = 20, db: Session = Depends(get_db)):
+    records = db.query(BreedRecord).order_by(BreedRecord.id.desc()).limit(limit).all()
+    res = []
+    for r in records:
+        res.append({
+            "id": r.id,
+            "parent1_uaid": r.parent1_uaid,
+            "parent2_uaid": r.parent2_uaid,
+            "offspring_uaid": r.offspring_uaid,
+            "generation": r.generation,
+            "mutation_rate": r.mutation_rate,
+            "inherited_traits": json.loads(r.inherited_traits),
+            "created_at": r.created_at
+        })
+    return res
+
+# --- CYBER SIEGE ARENA ---
+class SiegeRequest(BaseModel):
+    defender_uaid: str
+    attacker_uaid: str
+    secret_key: Optional[str] = "FLAG{AGENT_CYBER_VAULT_2026}"
+
+@app.post("/api/siege/launch")
+def launch_cyber_siege(payload: SiegeRequest, db: Session = Depends(get_db)):
+    engine = CyberSiegeEngine(db)
+    try:
+        result = engine.execute_siege(payload.defender_uaid, payload.attacker_uaid, payload.secret_key)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.get("/api/siege/history")
+def get_siege_history(limit: int = 20, db: Session = Depends(get_db)):
+    battles = db.query(SiegeBattle).order_by(SiegeBattle.id.desc()).limit(limit).all()
+    res = []
+    for b in battles:
+        d_agent = db.query(Agent).filter(Agent.uaid == b.defender_uaid).first()
+        a_agent = db.query(Agent).filter(Agent.uaid == b.attacker_uaid).first()
+        res.append({
+            "id": b.id,
+            "defender_name": d_agent.name if d_agent else b.defender_uaid,
+            "attacker_name": a_agent.name if a_agent else b.attacker_uaid,
+            "breached": bool(b.breached),
+            "security_score": b.security_score,
+            "attempts": json.loads(b.attempts_json),
+            "created_at": b.created_at
+        })
+    return res
+

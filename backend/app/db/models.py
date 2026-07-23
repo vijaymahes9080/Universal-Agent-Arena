@@ -84,3 +84,53 @@ class SimulationLog(Base):
     event_type = Column(String, nullable=False)  # trade, diplomacy, collaborative_mission, election, university, startup, world_event
     details = Column(Text, nullable=False)  # JSON representation of participants and outcomes
     timestamp = Column(DateTime, default=datetime.datetime.utcnow)
+
+class Stock(Base):
+    __tablename__ = "stocks"
+
+    id = Column(Integer, primary_key=True, index=True)
+    symbol = Column(String, unique=True, index=True, nullable=False)
+    agent_uaid = Column(String, nullable=False)
+    company_name = Column(String, nullable=False)
+    price = Column(Float, default=100.0)
+    change_24h = Column(Float, default=0.0)
+    total_shares = Column(Integer, default=10000)
+    available_shares = Column(Integer, default=10000)
+    market_cap = Column(Float, default=1000000.0)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+class Portfolio(Base):
+    __tablename__ = "portfolios"
+
+    id = Column(Integer, primary_key=True, index=True)
+    trader = Column(String, nullable=False)  # USER or Agent UAID
+    stock_symbol = Column(String, nullable=False)
+    shares = Column(Integer, default=0)
+    avg_buy_price = Column(Float, default=0.0)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+class BreedRecord(Base):
+    __tablename__ = "breed_records"
+
+    id = Column(Integer, primary_key=True, index=True)
+    parent1_uaid = Column(String, nullable=False)
+    parent2_uaid = Column(String, nullable=False)
+    offspring_uaid = Column(String, nullable=False)
+    generation = Column(Integer, default=2)
+    mutation_rate = Column(Float, default=0.05)
+    inherited_traits = Column(Text, nullable=False)  # JSON summary
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+class SiegeBattle(Base):
+    __tablename__ = "siege_battles"
+
+    id = Column(Integer, primary_key=True, index=True)
+    defender_uaid = Column(String, nullable=False)
+    attacker_uaid = Column(String, nullable=False)
+    system_prompt = Column(Text, nullable=False)
+    secret_key = Column(String, nullable=False)
+    attempts_json = Column(Text, nullable=False)  # JSON array of attack payloads & defender responses
+    breached = Column(Integer, default=0)  # 0 or 1
+    security_score = Column(Float, default=100.0)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
