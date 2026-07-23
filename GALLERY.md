@@ -6,3 +6,7 @@ Welcome to the visual gallery of the Universal Agent Arena.
 ## Agent Genome DNA
 ![Agent Genome DNA](assets/agent_genome_dna.png)
 
+
+## Agent Economy
+![Agent Economy](assets/agent_economy.png)
+
