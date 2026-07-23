@@ -14,3 +14,7 @@ Welcome to the visual gallery of the Universal Agent Arena.
 ## Agent OS Shell
 ![Agent OS Shell](assets/agent_os_shell.png)
 
+
+## Agent Neural Network
+![Agent Neural Network](assets/agent_neural_network.png)
+
