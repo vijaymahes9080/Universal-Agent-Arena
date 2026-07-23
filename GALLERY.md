@@ -26,3 +26,7 @@ Welcome to the visual gallery of the Universal Agent Arena.
 ## Battle Arena
 ![Battle Arena](assets/battle_arena.png)
 
+
+## Breeding Lab
+![Breeding Lab](assets/breeding_lab.png)
+
