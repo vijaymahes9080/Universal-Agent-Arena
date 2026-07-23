@@ -7,11 +7,11 @@ on:
 
 # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between run in-progress and latest queued.
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -45,8 +45,10 @@ jobs:
           VITE_API_URL: ""
         run: npm run build
 
-      - name: 📋 Configure GitHub Pages
+      - name: 📋 Configure & Enable GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true   # ← automatically enables Pages if disabled
 
       - name: 📤 Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
