@@ -22,3 +22,7 @@ Welcome to the visual gallery of the Universal Agent Arena.
 ## Agent Cityscape
 ![Agent Cityscape](assets/agent_cityscape.png)
 
+
+## Battle Arena
+![Battle Arena](assets/battle_arena.png)
+
