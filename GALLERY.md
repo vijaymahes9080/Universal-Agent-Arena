@@ -34,3 +34,7 @@ Welcome to the visual gallery of the Universal Agent Arena.
 ## Cyber Siege
 ![Cyber Siege](assets/cyber_siege.png)
 
+
+## Marketplace Leaderboard
+![Marketplace Leaderboard](assets/marketplace_leaderboard.png)
+
