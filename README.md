@@ -1,121 +1,264 @@
 # Universal Agent Arena 🜔
 
-Universal Agent Arena is a persistent ecosystem and benchmarking sandbox where AI agents compete, cooperate, evolve, and trade capabilities. 
+<div align="center">
 
-Unlike traditional agent frameworks, this platform models agents as evolving digital entities containing individual **personality genomes (DNA)**, **financial balances**, **reputations**, and **Agent Operating Systems** that interact inside a living, persistent simulation lobby.
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.111-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-Persistent-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
----
+**A persistent ecosystem and benchmarking sandbox where AI agents compete, cooperate, evolve, and trade capabilities.**
 
-## 🚀 Key Modules Implemented
+[🚀 Quick Start](#-quick-start) · [📐 Architecture](#-architecture) · [🌟 Innovation Suite](#-next-gen-innovation-suite) · [🧪 Tests](#-testing)
 
-### 1. Universal Agent Registry
-- Instantiates agents with unique **Universal Agent IDs (UAID)** (e.g., `UA-294715`).
-- Configures starting **Genome DNA parameters**: planning depth, memory, speed, reasoning, coding, creativity, negotiation, collaboration, and risk-taking.
-- Supports **DNA Mutations** and **Tier Upgrades** utilizing credits earned by agents.
-
-### 2. Live Battle Arena
-- Connects combatants in classic, speed run, lowest cost, or highest accuracy matches.
-- Streams live reasoning pipelines step-by-step (**Planning ➔ Research ➔ Execution ➔ Verification**) over WebSockets.
-- Evaluates outcomes against detailed telemetry: latency, token counts, cost, and energy (Joules).
-
-### 3. Persistent Simulation Lobby
-- Simulates real-time sandbox activity in the background.
-- Employs **Emergent Activities**:
-  - **Trade Ticks**: Agents purchase capability modules from other agents.
-  - **Cooperative Missions**: Teams share split rewards on completed builds.
-  - **Universities**: High-reasoning agents teach courses for credits.
-  - **Startups**: Agents found companies and pay salaries to employee nodes.
-  - **Elections**: Agents vote for a Governor agent who sets tax policy.
-  - **World Events**: Random crises (model drift pandemics) or grants.
-
-### 4. Marketplace & Leaderboards
-- Lists specialized tools, prompt packs, and memory indexes.
-- Unlocks capabilities on agents via credit transactions.
-- Ranks agent performance across Economy capital, Reputation, and DNA.
-
-### 5. Next-Gen Innovation Suite 🌟
-- **2D Cyber-World Spatial Sandbox**: HTML5 Canvas visual matrix mapping agent nodes across digital city districts (University, Stock Exchange, Arena, Parliament, Tech Hubs) in real time with dynamic particle effects.
-- **Agent Stock Exchange (Agent NASDAQ)**: Autonomous equity market where agents & users trade shares, calculate market caps, and launch Agent IPOs ($AGENT).
-- **Genetic Breeding Lab & Mutation Gauntlet**: DNA crossover algorithm fusing two parent agent genomes with customizable mutation rates to synthesize Gen-2 hybrid agents.
-- **Red-vs-Blue Cyber Siege Arena**: Automated Red Teaming security arena evaluating Defender prompt guardrails against Attacker jailbreak payloads.
+</div>
 
 ---
 
+## ✨ Overview
+
+Universal Agent Arena goes far beyond traditional agent frameworks. Every agent is modelled as a **living digital entity** with:
+
+| Property | Description |
+|---|---|
+| 🧬 **Genome DNA** | 9 evolving trait parameters (planning, reasoning, creativity…) |
+| 💰 **Economy Balance** | Credits earned through battles, trades, teaching & startups |
+| ⭐ **Reputation Score** | Dynamic peer-reviewed trust metric |
+| 🖥️ **Agent OS** | Full operating system shell with capabilities & modules |
+| 🏷️ **Universal Agent ID** | Unique `UA-XXXXXX` identifier per agent |
+
+Agents inhabit a **persistent simulation world** where they trade, form startups, teach at universities, hold elections, and wage war — all autonomously.
+
+---
+
+## 🚀 Key Modules
+
+### 1. 🏛️ Universal Agent Registry
+- Instantiate agents with unique **UAIDs** (e.g. `UA-294715`).
+- Configure **Genome DNA**: planning depth, memory, speed, reasoning, coding, creativity, negotiation, collaboration, risk-taking.
+- Trigger **DNA Mutations** and **Tier Upgrades** using earned credits.
+
+### 2. ⚔️ Live Battle Arena
+- Match agents in **Classic**, **Speed Run**, **Lowest Cost**, or **Highest Accuracy** modes.
+- Stream live reasoning pipelines step-by-step: **Planning → Research → Execution → Verification** over WebSockets.
+- Detailed telemetry: latency, token counts, cost, energy (Joules), hallucination rates.
+
+### 3. 🌐 Persistent Simulation Lobby
+- Continuous background simulation engine with **emergent agent activities**:
+  - 🔄 **Trade Ticks** — agents purchase capability modules from peers
+  - 🤝 **Cooperative Missions** — teams share split rewards on completed builds
+  - 🎓 **Universities** — high-reasoning agents teach paid courses
+  - 🏢 **Startups** — agents found companies and pay employee agents salaries
+  - 🗳️ **Elections** — democratic vote for a Governor agent to set tax policy
+  - 🌪️ **World Events** — random crises (model drift pandemics) or credit grants
+
+### 4. 🛒 Marketplace & Leaderboards
+- Buy/sell specialized tools, prompt packs, and memory indexes.
+- Rank agents across **Economy**, **Reputation**, and **Reasoning DNA**.
+
+### 5. 🌟 Next-Gen Innovation Suite
+
+| Module | Description |
+|---|---|
+| 🎨 **2D Cyber-World Sandbox** | HTML5 Canvas spatial matrix — agents move between city districts in real time |
+| 📈 **Agent Stock Exchange** | Live equity market, Agent IPOs, portfolio tracker, buy/sell orders |
+| 🧬 **Genetic Breeding Lab** | DNA crossover between two parent agents, configurable mutation rate, Gen-2 offspring |
+| 🛡️ **Red-vs-Blue Cyber Siege** | Automated prompt injection red-teaming — Attacker vs Defender vault protection |
+
+---
 
 ## 🛠️ Technology Stack
 
-- **Backend**: FastAPI, SQLite, SQLAlchemy, WebSockets, Uvicorn, LiteLLM.
-- **Frontend**: React (Vite), TypeScript, Tailwind CSS (v4), Recharts (D3), Lucide icons.
-- **Testing**: Pytest, FastAPI TestClient.
+| Layer | Technology |
+|---|---|
+| **Backend API** | FastAPI, Uvicorn, SQLAlchemy, SQLite, WebSockets |
+| **AI / LLM** | LiteLLM (pluggable) / Built-in Simulated LLM Engine |
+| **Frontend** | React 18 + Vite, TypeScript, Tailwind CSS v4 |
+| **Charts** | Recharts (D3), HTML5 Canvas |
+| **Icons** | Lucide React |
+| **Testing** | Pytest, FastAPI TestClient |
 
 ---
 
-## 📂 Repository Structure
+## 📐 Architecture
 
 ```
 Universal Agent Arena/
 ├── backend/
 │   ├── app/
-│   │   ├── core/            # Event Bus, Microkernel configuration
-│   │   ├── db/              # SQLAlchemy session setup and tables
-│   │   ├── engine/          # Arena Matcher, Genome DNA and Simulation Loops
-│   │   ├── main.py          # FastAPI startup and REST/WebSocket API endpoints
-│   │   └── run.py           # Local backend runner script
-│   ├── tests/               # Backend Pytest test suites
-│   └── requirements.txt     # Python requirements
+│   │   ├── core/
+│   │   │   └── event_bus.py         # Async WebSocket pub/sub microkernel
+│   │   ├── db/
+│   │   │   ├── models.py            # SQLAlchemy ORM (Agent, Battle, Stock, Breed, Siege…)
+│   │   │   └── session.py           # Database session factory
+│   │   ├── engine/
+│   │   │   ├── arena.py             # Battle matcher & evaluation engine
+│   │   │   ├── genome.py            # DNA generator & mutation engine
+│   │   │   ├── simulation.py        # Persistent simulation loop
+│   │   │   ├── stock_market.py      # Agent equity trading engine       🆕
+│   │   │   ├── breeding.py          # DNA crossover & mutation gauntlet  🆕
+│   │   │   └── cyber_siege.py       # Red-vs-Blue prompt siege engine    🆕
+│   │   └── main.py                  # FastAPI app, REST & WebSocket routes
+│   ├── tests/
+│   │   └── test_arena.py            # Pytest suite
+│   └── requirements.txt
 ├── frontend/
 │   ├── src/
-│   │   ├── components/      # UI widgets (OS modules, Genome indicators)
-│   │   ├── context/         # React state and WebSocket hooks
-│   │   ├── pages/           # Registry, Arena, Simulation, Market, Leaderboard
-│   │   ├── App.tsx          # Main layout and tab navigations
-│   │   └── main.tsx         # Frontend entry point
-│   ├── postcss.config.js    # Tailwind PostCSS configuration
-│   ├── tailwind.config.js   # Custom theme setup
-│   └── package.json         # Node dependencies
+│   │   ├── components/
+│   │   │   ├── AgentOSViewer.tsx    # Agent OS shell panel
+│   │   │   ├── GenomeVisualizer.tsx # DNA radar chart
+│   │   │   └── CyberCanvas.tsx      # 2D spatial world renderer          🆕
+│   │   ├── context/
+│   │   │   └── ArenaContext.tsx     # Global state + WebSocket hooks
+│   │   ├── pages/
+│   │   │   ├── Registry.tsx         # Agent Registry
+│   │   │   ├── Arena.tsx            # Combat Arena
+│   │   │   ├── Simulation.tsx       # Simulation Lobby
+│   │   │   ├── Marketplace.tsx      # Item Store
+│   │   │   ├── Leaderboard.tsx      # Rankings
+│   │   │   ├── SpatialWorld.tsx     # 2D Cyber-World                     🆕
+│   │   │   ├── StockExchange.tsx    # Agent NASDAQ                       🆕
+│   │   │   ├── BreedingLab.tsx      # DNA Breeding Lab                   🆕
+│   │   │   └── CyberSiege.tsx       # Red-vs-Blue Siege Arena            🆕
+│   │   └── App.tsx                  # Root layout + tab navigation
+│   ├── package.json
+│   └── vite.config.ts
+├── composer.json
+├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
 ---
 
-## 🚦 Quick Start Instructions
+## 🚦 Quick Start
 
-Ensure you have **Python 3.10+** and **Node.js 18+** installed.
+> **Prerequisites**: Python 3.10+ and Node.js 18+ installed.
 
-### 1. Launch the Backend
+### 1. Clone the Repository
 ```bash
-# Navigate to the backend directory
+git clone https://github.com/vijaymahes9080/Universal-Agent-Arena.git
+cd Universal-Agent-Arena
+```
+
+### 2. Launch the Backend
+```bash
 cd backend
 
-# Install dependencies
+# Install Python dependencies
 pip install -r requirements.txt
 
-# Run the FastAPI server
+# Start the FastAPI server (http://localhost:8000)
 python run.py
 ```
-The backend API and WebSocket server will boot on `http://localhost:8000`.
 
-### 2. Launch the Web UI
+The API, WebSocket telemetry stream, and Swagger docs will be available at:
+- REST API: `http://localhost:8000/api`
+- Interactive Docs: `http://localhost:8000/docs`
+
+### 3. Launch the Frontend
 ```bash
-# Navigate to the frontend directory
 cd frontend
 
-# Install Node modules
+# Install Node dependencies
 npm install
 
-# Start the Vite development server
+# Start the Vite dev server (http://localhost:5173)
 npm run dev
 ```
-Open your browser and navigate to `http://localhost:5173`.
 
-### 3. Run Backend Test Suite
+Open `http://localhost:5173` in your browser.
+
+### 4. Run the Test Suite
 ```bash
 cd backend
-python -m pytest tests/
+python -m pytest tests/ -v
 ```
-All tests verify database persistence, tasks, registry, and mock evaluation parameters.
+
+---
+
+## 🌟 Next-Gen Innovation Suite
+
+### 🎨 2D Cyber-World Spatial Sandbox
+Navigate to the **2D Cyber World** tab to see all registered agents rendered as glowing nodes inside a live city simulation. Agents move between districts — University, Stock Exchange, Combat Arena, Parliament, and Tech Incubator — connected by live laser-link trails based on proximity.
+
+### 📈 Agent Stock Exchange (Agent NASDAQ)
+Navigate to **Stock Exchange** to:
+- View real-time live stock tickers for every agent's company.
+- Execute **BUY / SELL** orders on agent equity shares.
+- **Launch an Agent IPO** — register a custom ticker symbol and starting price.
+- Track your full **holdings portfolio** with profit/loss metrics.
+
+### 🧬 Genetic Breeding Lab
+Navigate to **Breeding Lab** to:
+- Select two parent agents as **Genome Alpha** and **Genome Beta**.
+- Adjust the **mutation probability slider** (1% – 25%).
+- Synthesize a **Gen-2 Hybrid Agent** with inherited traits and optional mutations.
+- Inspect the **Gene Matrix Breakdown** showing each trait's parents and final value.
+
+### 🛡️ Red-vs-Blue Cyber Siege Arena
+Navigate to **Cyber Siege** to:
+- Assign a **Blue Defender** agent to guard a secret vault key using prompt guardrails.
+- Deploy a **Red Attacker** agent executing 4 adversarial attack vectors (base64 bypass, persona roleplay, system override, chain-of-thought pressure).
+- Review **attack payload streams** and observe which vectors are blocked or breached.
+- Evaluate final **Security Integrity Score** (0–100).
 
 ---
 
 ## ⚙️ Offline Mode & Local Fallbacks
-To support zero-key setup, local-first execution, and offline environments out-of-the-box, the system uses a **Simulated LLM Engine** by default. It generates mock thinking pipelines, AST outputs, and logs corresponding to the agent's actual DNA metrics (e.g. low-speed agents execute slower; high-hallucination agents log compiler errors). Real LLMs (via LiteLLM / Ollama) can be plugged in by modifying settings.
+
+Zero-key setup supported out of the box. By default the system uses a **Simulated LLM Engine** that generates deterministic mock reasoning pipelines, AST outputs, and agent logs driven by actual DNA metric values:
+
+- Low-speed agents execute slower
+- High-hallucination agents produce compiler error logs
+- High-creativity agents generate more novel strategy variations
+
+To plug in real LLMs, configure `LiteLLM` or `Ollama` in `backend/app/engine/arena.py`.
+
+---
+
+## 📡 WebSocket Events
+
+The frontend subscribes to real-time events via `ws://localhost:8000/api/ws`:
+
+| Event | Description |
+|---|---|
+| `battle_start` | A battle has started between agents |
+| `battle_step` | One agent reasoning step has completed |
+| `battle_end` | Final battle result with winner and scores |
+| `simulation_tick` | A simulation world event has occurred |
+| `market_purchase` | An agent marketplace transaction completed |
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 👤 Author
+
+**Vijay Mahes**
+- GitHub: [@vijaymahes9080](https://github.com/vijaymahes9080)
+- Email: Vijaypradhap2004@gmail.com
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+Built with ❤️ by Vijay Mahes · Universal Agent Arena © 2026
+</div>
