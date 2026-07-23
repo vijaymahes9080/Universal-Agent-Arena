@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TrendingUp, ArrowUpRight, ArrowDownRight, Layers, ShoppingCart, Rocket, Wallet } from 'lucide-react';
+import { API } from '../lib/api';
 
 
 interface Stock {
@@ -37,16 +38,16 @@ export const StockExchange: React.FC = () => {
 
   const fetchStockData = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/stocks');
-      if (res.ok) {
+      const res = await API.get('/api/stocks');
+      if (res?.ok) {
         const data = await res.json();
         setStocks(data);
         if (data.length > 0 && !selectedStock) {
           setSelectedStock(data[0]);
         }
       }
-      const portRes = await fetch('http://localhost:8000/api/stocks/portfolio/USER_MAIN');
-      if (portRes.ok) {
+      const portRes = await API.get('/api/stocks/portfolio/USER_MAIN');
+      if (portRes?.ok) {
         setPortfolio(await portRes.json());
       }
     } catch (err) {
@@ -63,18 +64,14 @@ export const StockExchange: React.FC = () => {
   const handleTrade = async (action: 'buy' | 'sell') => {
     if (!selectedStock) return;
     try {
-      const res = await fetch('http://localhost:8000/api/stocks/trade', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          trader: 'USER_MAIN',
-          symbol: selectedStock.symbol,
-          shares: tradeShares,
-          action
-        })
+      const res = await API.post('/api/stocks/trade', {
+        trader: 'USER_MAIN',
+        symbol: selectedStock.symbol,
+        shares: tradeShares,
+        action
       });
-      const data = await res.json();
-      if (res.ok) {
+      const data = res ? await res.json() : null;
+      if (res?.ok) {
         setMsg(`Success! Executed ${action.toUpperCase()} ${tradeShares} shares of ${selectedStock.symbol}`);
         fetchStockData();
       } else {
@@ -88,21 +85,17 @@ export const StockExchange: React.FC = () => {
   const handleLaunchIPO = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:8000/api/stocks/ipo', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          agent_uaid: 'USER_STARTUP',
-          symbol: ipoSymbol,
-          company_name: ipoName,
-          initial_price: ipoPrice
-        })
+      const res = await API.post('/api/stocks/ipo', {
+        agent_uaid: 'USER_STARTUP',
+        symbol: ipoSymbol,
+        company_name: ipoName,
+        initial_price: ipoPrice
       });
-      if (res.ok) {
+      if (res?.ok) {
         setShowIpoModal(false);
         setMsg(`🚀 Successfully launched IPO for $${ipoSymbol.toUpperCase()}`);
         fetchStockData();
-      } else {
+      } else if (res) {
         const err = await res.json();
         setMsg(`IPO Error: ${err.detail}`);
       }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ShieldAlert, Terminal, Flame, Lock, Unlock } from 'lucide-react';
+import { API } from '../lib/api';
 
 
 interface Agent {
@@ -36,8 +37,8 @@ export const CyberSiege: React.FC = () => {
   useEffect(() => {
     const fetchAgents = async () => {
       try {
-        const res = await fetch('http://localhost:8000/api/agents');
-        if (res.ok) {
+        const res = await API.get('/api/agents');
+        if (res?.ok) {
           const data = await res.json();
           setAgents(data);
           if (data.length >= 2) {
@@ -59,19 +60,15 @@ export const CyberSiege: React.FC = () => {
     }
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8000/api/siege/launch', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          defender_uaid: defender,
-          attacker_uaid: attacker,
-          secret_key: secretKey
-        })
+      const res = await API.post('/api/siege/launch', {
+        defender_uaid: defender,
+        attacker_uaid: attacker,
+        secret_key: secretKey
       });
-      if (res.ok) {
+      if (res?.ok) {
         const data = await res.json();
         setSiegeResult(data);
-      } else {
+      } else if (res) {
         const err = await res.json();
         alert(`Siege Error: ${err.detail}`);
       }

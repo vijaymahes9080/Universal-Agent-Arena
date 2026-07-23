@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Dna, Sparkles, Zap, GitMerge, CheckCircle2 } from 'lucide-react';
+import { API } from '../lib/api';
 
 
 interface Agent {
@@ -29,8 +30,8 @@ export const BreedingLab: React.FC = () => {
   useEffect(() => {
     const fetchAgents = async () => {
       try {
-        const res = await fetch('http://localhost:8000/api/agents');
-        if (res.ok) {
+        const res = await API.get('/api/agents');
+        if (res?.ok) {
           const data = await res.json();
           setAgents(data);
           if (data.length >= 2) {
@@ -52,19 +53,15 @@ export const BreedingLab: React.FC = () => {
     }
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8000/api/breeding/crossbreed', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          parent1_uaid: parent1,
-          parent2_uaid: parent2,
-          mutation_rate: mutationRate
-        })
+      const res = await API.post('/api/breeding/crossbreed', {
+        parent1_uaid: parent1,
+        parent2_uaid: parent2,
+        mutation_rate: mutationRate
       });
-      if (res.ok) {
+      if (res?.ok) {
         const data = await res.json();
         setResult(data);
-      } else {
+      } else if (res) {
         const err = await res.json();
         alert(`Breeding Error: ${err.detail}`);
       }

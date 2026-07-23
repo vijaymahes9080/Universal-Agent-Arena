@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { CyberCanvas } from '../components/CyberCanvas';
 import type { SpatialAgentNode } from '../components/CyberCanvas';
 import { Globe, Shield, Zap, Sparkles, Building2, GraduationCap, TrendingUp, RefreshCw } from 'lucide-react';
+import { API } from '../lib/api';
 
 
 export const SpatialWorld: React.FC = () => {
@@ -10,8 +11,8 @@ export const SpatialWorld: React.FC = () => {
 
   const fetchNodes = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/simulation/spatial-nodes');
-      if (res.ok) {
+      const res = await API.get('/api/simulation/spatial-nodes');
+      if (res?.ok) {
         const data = await res.json();
         setAgents(data);
       }
